@@ -8,13 +8,13 @@ import { CafeJoinUserCountResDto } from "./dto/res/cafeJoinUserResDto";
 
 
 @ApiTags('cafeInfo API')
-@Controller('/cafeInfo')
+@Controller('/api/v1/cafeInfo')
 export class CafeInfoController {
 
   constructor(private readonly cafeInfoService: CafeInfoService) {}
 
   @Get('')
-  @ApiResponse({ status: 200, description: 'Success', type: Map }) 
+  @ApiResponse({ status: 200, description: 'Success', type: CafeJoinUserCountResDto }) 
   async get(): Promise<CafeJoinUserCountResDto> {
 
     const joinUserCount: number = await this.cafeInfoService.getCafeJoinedUserCount();
