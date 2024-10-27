@@ -12,6 +12,7 @@ import { CafeInfoModule } from './application/cafe/cafeInfo.module';
 import { CommonUtilModule } from './common/util/util.module';
 import { AppSchedulerModule } from './scheduler/app.scheduler.module';
 import { FaqModule } from './application/faq/faq.module';
+import { QnaModule } from './application/qna/qna.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { FaqModule } from './application/faq/faq.module';
     TestModule,
     CafeInfoModule,
     FaqModule,
+    QnaModule,
 
     /* 공통 모듈 관리 */
     CommonUtilModule,
