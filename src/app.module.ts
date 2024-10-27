@@ -11,6 +11,7 @@ import { TestModule } from './application/test/test.module';
 import { CafeInfoModule } from './application/cafe/cafeInfo.module';
 import { CommonUtilModule } from './common/util/util.module';
 import { AppSchedulerModule } from './scheduler/app.scheduler.module';
+import { FaqModule } from './application/faq/faq.module';
 
 @Module({
   imports: [
@@ -33,6 +34,9 @@ import { AppSchedulerModule } from './scheduler/app.scheduler.module';
     /* Domain 별 모듈 관리 */
     TestModule,
     CafeInfoModule,
+    FaqModule,
+
+    /* 공통 모듈 관리 */
     CommonUtilModule,
 
     /* Scheduler 설정 */
