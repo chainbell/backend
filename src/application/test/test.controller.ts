@@ -5,7 +5,6 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TestResDto } from './dto/res/TestResDto';
 import { TestReqDto } from './dto/req/TestReqDto';
-import { ConfigService } from '@nestjs/config';
 
 
 

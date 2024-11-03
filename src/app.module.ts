@@ -1,3 +1,4 @@
+import { CreditModule } from './application/credit/credit.module';
 /* eslint-disable prettier/prettier */
 
 import { Module } from '@nestjs/common';
@@ -37,6 +38,7 @@ import { QnaModule } from './application/qna/qna.module';
     CafeInfoModule,
     FaqModule,
     QnaModule,
+    CreditModule,
 
     /* 공통 모듈 관리 */
     CommonUtilModule,
