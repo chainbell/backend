@@ -11,6 +11,7 @@ import { CommonUtilModule } from './common/util/util.module';
 import { AppSchedulerModule } from './scheduler/app.scheduler.module';
 
 import { ApplicationModule } from './application/application.module';
+import { RdbConfigModule } from './infra/rdb/typeorm.module';
 
 @Module({
   imports: [
@@ -32,6 +33,9 @@ import { ApplicationModule } from './application/application.module';
       : CacheModule.register({
           isGlobal: true,
         }),
+
+    /* rdb 모듈 관리 */
+    RdbConfigModule,
 
     /* Domain 별 모듈 관리 */
     ApplicationModule,
