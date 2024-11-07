@@ -1,17 +1,20 @@
 /* eslint-disable prettier/prettier */
 
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CacheModule } from '@nestjs/cache-manager';
 
 import { redisStore } from 'cache-manager-redis-yet';
 
-import { AppController } from './app.controller';
-import { CommonUtilModule } from './common/util/util.module';
 import { AppSchedulerModule } from './scheduler/app.scheduler.module';
 
-import { ApplicationModule } from './application/application.module';
-import { RdbConfigModule } from './infra/rdb/typeorm.module';
+import { TestModule } from './application/test/test.module';
+import { CafeInfoModule } from './application/cafe/cafeInfo.module';
+import { FaqModule } from './application/faq/faq.module';
+import { QnaModule } from './application/qna/qna.module';
+import { CreditModule } from './application/credit/credit.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { getWakZooDbConfig } from './config/typeorm.module';
 
 @Module({
   imports: [
@@ -34,19 +37,23 @@ import { RdbConfigModule } from './infra/rdb/typeorm.module';
           isGlobal: true,
         }),
 
-    /* rdb 모듈 관리 */
-    RdbConfigModule,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: getWakZooDbConfig,
+    }),
 
     /* Domain 별 모듈 관리 */
-    ApplicationModule,
-
-    /* 공통 모듈 관리 */
-    CommonUtilModule,
+    TestModule,
+    CafeInfoModule,
+    FaqModule,
+    QnaModule,
+    CreditModule,
 
     /* Scheduler 설정 */
     AppSchedulerModule,
   ],
   providers: [],
-  controllers: [AppController],
+  controllers: [],
 })
 export class AppModule {}

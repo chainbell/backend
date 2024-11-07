@@ -1,10 +1,24 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { TestEntity } from 'src/infra/wakzoolife/test.entity';
+import { Repository } from 'typeorm';
+
 
 @Injectable()
 export class TestService {
-	public getTestValue(): string {
-    return 'get-test-value';
+
+	constructor(
+    @InjectRepository(TestEntity)
+    private readonly testRepository: Repository<TestEntity>,
+  ) {}
+
+	public async getTestValue(strParam: string): Promise<string> {
+
+		const result = await this.testRepository.find();
+		console.log(result);
+		
+    return strParam;
 	}
 
 	public postTestValue(strParam: string): string {

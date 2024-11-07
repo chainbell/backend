@@ -16,10 +16,12 @@ export class TestController {
 
   @Get(':testParam')
   @ApiResponse({ status: 200, description: 'Success', type: TestResDto }) 
-  get(@Param('testParam') testParam: string): TestResDto {
+  async get(@Param('testParam') testParam: string): Promise<TestResDto> {
 
-    const result = TestResDto.from(testParam);
+    const result = TestResDto.from(await this.testService.getTestValue(testParam));
+    
     return result;
+  
   }
 
   @Post()
