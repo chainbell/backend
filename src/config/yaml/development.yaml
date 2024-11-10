@@ -1,0 +1,12 @@
+server:
+  port: 3000
+
+datasource:
+  wakzoolife:
+    type: mysql
+    host: mylifeis123.synology.me
+    port: 3306
+    username: wakzoolife
+    password: Wakzoolife1!
+    database: wakzoolife
+    synchronize: true

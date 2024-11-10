@@ -14,13 +14,14 @@ import { FaqModule } from './application/faq/faq.module';
 import { QnaModule } from './application/qna/qna.module';
 import { CreditModule } from './application/credit/credit.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { getWakZooDbConfig } from './config/typeorm.module';
-
+import { getWakZooDbConfig } from './config/db/typeorm.module';
+import YamlConfig from './config/yaml/env.config';
 @Module({
   imports: [
     
     ConfigModule.forRoot({
       isGlobal: true,
+      load: [YamlConfig],
       envFilePath: [
         `.env.${process.env.NODE_ENV}`,
         '.env'],
