@@ -15,7 +15,7 @@ export class NaverOAuthController {
 	@ApiResponse({ status: 200, description: 'Naver access token 발급', type: Map }) 
 	post(@Body() requestParam: NaverReqDto): Map<string, any> {
 		
-		console.log(requestParam);
+		console.log('Naver OAuth post : ' + requestParam);
 
 		return new Map<string, any>();
 
@@ -23,8 +23,9 @@ export class NaverOAuthController {
 
 	@Delete('')
 	@ApiResponse({ status: 200, description: 'Naver access token 갱신', type: Map }) 
-	delete(): Map<string, any> {
+	delete(@Body() requestParam: NaverReqDto): Map<string, any> {
 		
+		console.log('Naver OAuth delete : ' + requestParam);
 
 		return new Map<string, any>();
 
@@ -32,8 +33,9 @@ export class NaverOAuthController {
 
 	@Put('')
 	@ApiResponse({ status: 200, description: 'Naver access token 삭제', type: Map }) 
-	put(): Map<string, any> {
+	put(@Body() requestParam: NaverReqDto): Map<string, any> {
 		
+		console.log('Naver OAuth put : ' + requestParam);
 
 		return new Map<string, any>();
 
