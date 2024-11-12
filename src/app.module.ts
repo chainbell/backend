@@ -16,6 +16,7 @@ import { CreditModule } from './application/credit/credit.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getWakZooDbConfig } from './config/db/typeorm.module';
 import YamlConfig from './config/yaml/env.config';
+import { UserModule } from './application/user/user.module';
 @Module({
   imports: [
     
@@ -50,6 +51,7 @@ import YamlConfig from './config/yaml/env.config';
     FaqModule,
     QnaModule,
     CreditModule,
+    UserModule,
 
     /* Scheduler 설정 */
     AppSchedulerModule,
