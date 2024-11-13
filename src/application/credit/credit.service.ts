@@ -5,6 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { CreditCategoryEntity } from "src/infra/wakzoolife/credit/creditCategory.entity";
 import { CreditParticipantEntity } from "src/infra/wakzoolife/credit/CreditParticipant.entity";
 import { Repository } from "typeorm";
+import { CreditCategoryCode } from "./dto/code/CreditCategory.code";
 
 @Injectable()
 export class CreditService {
@@ -18,9 +19,12 @@ export class CreditService {
 
 
 	public async getCreditList(): Promise<CreditCategoryEntity[]> {
-		console.log(">>>>>>");
+
+		console.log(CreditCategoryCode);
 		return await this.creditCategoryRepository.find();
 	}
+
+	
 
 
 }

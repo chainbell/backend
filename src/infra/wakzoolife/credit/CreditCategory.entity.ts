@@ -5,7 +5,7 @@ import { CreditParticipantEntity } from './CreditParticipant.entity';
 @Entity({ name: 'CreditCategory' })
 export class CreditCategoryEntity {
 
-  @PrimaryColumn({ type: 'varchar', length: 10 })
+  @PrimaryColumn({ type: 'varchar', length: 20 })
   code: string;
 
   @Column({ type: 'varchar', length: 50 })
