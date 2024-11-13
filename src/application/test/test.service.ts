@@ -15,8 +15,11 @@ export class TestService {
 
 	public async getTestValue(strParam: string): Promise<string> {
 
+		console.log(">>>>>>");
+		console.log(__dirname);
 		const result = await this.testRepository.find();
 		console.log(result);
+
 		
     return strParam;
 	}
