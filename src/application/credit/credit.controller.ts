@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Post } from "@nestjs/common";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CreditResDto } from "./dto/res/CreditResDto";
 import { CreditListResDto } from "./dto/res/CreditListResDto";
@@ -23,6 +23,14 @@ export class CreditController {
     this.creditService.getCreditList();
 
     return CreditListResDto.from([CreditResDto.of('기획', ['유저 1']), CreditResDto.of('개발', ['유저 2'])]);
+  }
+
+  @Post('')
+  @ApiResponse({ status: 200, description: '설정 - 크레딧 유저 추가', type: Map })
+  async post(): Promise<Map<string, string>> {
+    
+
+    return new Map<string, string>([['result', 'success']]);
   }
 
 

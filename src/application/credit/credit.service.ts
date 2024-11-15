@@ -19,10 +19,40 @@ export class CreditService {
 
 
 	public async getCreditList(): Promise<CreditCategoryEntity[]> {
-
-		console.log(CreditCategoryCode);
-		return await this.creditCategoryRepository.find();
+		/**
+		 * credit 전체 정보 조회
+		 */
+		return null;
 	}
+
+	private initCreditCategory(): void {
+		/**
+		 * credit Category 초기화
+		 */
+		Object.entries(CreditCategoryCode).forEach(([key, value]) => {
+			
+			const creditCategory = new CreditCategoryEntity();
+			creditCategory.code = key;
+			creditCategory.categoryName = value;
+			
+			this.creditCategoryRepository.save(creditCategory);
+
+		});
+
+	}
+
+	public async addCreditParticipant(): Promise<void> {
+		/**
+		 * credit Category 별 사용자 추가
+		 */
+	}
+
+	public deleteCreditParticipant(): void {
+		/**
+		 * credit Category 별 사용자 삭제
+		 */
+	}
+
 
 	
 

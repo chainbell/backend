@@ -3,7 +3,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { CreditCategoryEntity } from './creditCategory.entity';
 
-@Entity()
+@Entity({ name: 'CreditParticipant' })
 export class CreditParticipantEntity {
 
   @PrimaryGeneratedColumn()
