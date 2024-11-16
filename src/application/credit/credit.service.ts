@@ -14,43 +14,54 @@ export class CreditService {
 		@InjectRepository(CreditCategoryEntity)
 		private readonly creditCategoryRepository: Repository<CreditCategoryEntity>,
 		@InjectRepository(CreditParticipantEntity)
-		private readonly creditParticipantRepository: Repository<CreditParticipantEntity>,
-	) {}
+		private readonly creditParticipantRepository: Repository<CreditParticipantEntity>
+		) {}
 
 
 	public async getCreditList(): Promise<CreditCategoryEntity[]> {
 		/**
 		 * credit 전체 정보 조회
 		 */
+
+		const creditCategory = CreditCategoryCode.DEVELOP;
+		console.log(creditCategory);
+	
 		return null;
 	}
 
 	private initCreditCategory(): void {
 		/**
-		 * credit Category 초기화
+		 * credit Category 초기화 - 다시 만들어야 함 enum 방식 바꿈
 		 */
-		Object.entries(CreditCategoryCode).forEach(([key, value]) => {
-			
-			const creditCategory = new CreditCategoryEntity();
-			creditCategory.code = key;
-			creditCategory.categoryName = value;
-			
-			this.creditCategoryRepository.save(creditCategory);
-
-		});
-
+		
 	}
 
-	public async addCreditParticipant(): Promise<void> {
+	public async addCreditParticipant(participantName: string, categoryCode:CreditCategoryCode): Promise<void> {
 		/**
-		 * credit Category 별 사용자 추가
+		 * credit Category 별 사용자 추가 - 테스트 필요
 		 */
+
+		const categoryEntity = new CreditCategoryEntity();
+		categoryEntity.code = categoryCode;
+		
+		const cateogryEntity = new CreditParticipantEntity();
+		cateogryEntity.name = participantName;
+		cateogryEntity.category = categoryEntity;
+
+		this.creditParticipantRepository.save(cateogryEntity);
 	}
 
-	public deleteCreditParticipant(): void {
+	public deleteCreditParticipant(id: number): boolean {
 		/**
 		 * credit Category 별 사용자 삭제
 		 */
+		try {
+			this.creditParticipantRepository.delete(id);
+			return true;
+		}
+		catch (e) {
+			return false;
+		}
 	}
 
 
