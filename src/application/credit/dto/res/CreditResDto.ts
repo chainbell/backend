@@ -2,7 +2,7 @@
 
 
 export class CreditResDto {
-
+	
 	categoryName: string;
 	participantName: string[];
 

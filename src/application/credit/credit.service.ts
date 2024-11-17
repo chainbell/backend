@@ -18,22 +18,21 @@ export class CreditService {
 		) {}
 
 
-	public async getCreditList(): Promise<{ categoryName: string, participantName: string }[]> {
+	public async getCreditList(): Promise<Record<string, string[]>> {
 		/**
 		 * credit 전체 정보 조회
 		 */
 
-		const queryData = await this.creditCategoryRepository.createQueryBuilder('cc')
-            .innerJoinAndSelect(CreditParticipantEntity, 'cp', 'cc.code = cp.categoryCode')
-            .select(['cc.categoryName as categoryName', 'cp.name as participantName'])
-						.orderBy('cc.sort', 'ASC')
-            .getRawMany();
-
-		const result = queryData.map(row => ({
-			categoryName: row['categoryName'],
-			participantName: row['participantName'],
-		}));
-
+		const queryData = await this.getCreditCategoryEntity();
+		
+		const result = queryData.reduce((acc, { categoryName, participantName }) => {
+			if (!acc[categoryName]) {
+				acc[categoryName] = [];
+			}
+			acc[categoryName].push(participantName);
+			return acc;
+		}, {} as Record<string, string[]>);
+		
 		return result
 	}
 
@@ -63,6 +62,16 @@ export class CreditService {
 		catch (e) {
 			return false;
 		}
+	}
+
+	private async getCreditCategoryEntity(): Promise<{categoryName:string, participantName:string }[]> {
+
+			return  await this.creditCategoryRepository.createQueryBuilder('cc')
+			.innerJoinAndSelect(CreditParticipantEntity, 'cp', 'cc.code = cp.categoryCode')
+			.select(['cc.categoryName as categoryName', 'cp.name as participantName'])
+			.orderBy('cc.sort', 'ASC')
+			.orderBy('cp.id', 'ASC')
+			.getRawMany();
 	}
 
 

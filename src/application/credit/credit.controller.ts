@@ -23,7 +23,12 @@ export class CreditController {
     
     const creditList = await this.creditService.getCreditList();
     
-    return CreditListResDto.from(creditList.map(item => CreditResDto.of(item.categoryName, [item.participantName])));
+    const creditResDtoList: CreditResDto[] = [];
+    for (const key in creditList) {
+      creditResDtoList.push(CreditResDto.of(key, creditList[key]));
+    }
+    
+    return CreditListResDto.from(creditResDtoList);
 
   }
 
