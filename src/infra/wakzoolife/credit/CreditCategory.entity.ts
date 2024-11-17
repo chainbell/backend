@@ -16,4 +16,6 @@ export class CreditCategoryEntity {
   })
   participants: CreditParticipantEntity[];
 
+  @Column({ type: 'int' })
+  sort: number;
 }

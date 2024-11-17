@@ -3,12 +3,12 @@
 
 export class CreditResDto {
 
-	section: string;
-	participants: string[];
+	categoryName: string;
+	participantName: string[];
 
 	constructor(section: string, participants: string[]) {
-		this.section = section;
-		this.participants = participants;
+		this.categoryName = section;
+		this.participantName = participants;
 	}
 
 	static of(section:string, participants:string[]): CreditResDto {

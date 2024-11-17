@@ -21,9 +21,10 @@ export class CreditController {
   @ApiResponse({ status: 200, description: '설정 - 크레딧 정보 조회', type: CreditListResDto }) 
   async get(): Promise<CreditListResDto> {
     
-    this.creditService.getCreditList();
+    const creditList = await this.creditService.getCreditList();
+    
+    return CreditListResDto.from(creditList.map(item => CreditResDto.of(item.categoryName, [item.participantName])));
 
-    return CreditListResDto.from([CreditResDto.of('기획', ['유저 1']), CreditResDto.of('개발', ['유저 2'])]);
   }
 
   @Post('')

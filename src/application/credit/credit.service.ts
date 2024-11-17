@@ -18,22 +18,23 @@ export class CreditService {
 		) {}
 
 
-	public async getCreditList(): Promise<CreditCategoryEntity[]> {
+	public async getCreditList(): Promise<{ categoryName: string, participantName: string }[]> {
 		/**
 		 * credit 전체 정보 조회
 		 */
 
-		const creditCategory = CreditCategoryCode.DEVELOP;
-		console.log(creditCategory);
-	
-		return null;
-	}
+		const queryData = await this.creditCategoryRepository.createQueryBuilder('cc')
+            .innerJoinAndSelect(CreditParticipantEntity, 'cp', 'cc.code = cp.categoryCode')
+            .select(['cc.categoryName as categoryName', 'cp.name as participantName'])
+						.orderBy('cc.sort', 'ASC')
+            .getRawMany();
 
-	private initCreditCategory(): void {
-		/**
-		 * credit Category 초기화 - 다시 만들어야 함 enum 방식 바꿈
-		 */
-		
+		const result = queryData.map(row => ({
+			categoryName: row['categoryName'],
+			participantName: row['participantName'],
+		}));
+
+		return result
 	}
 
 	public async addCreditParticipant(participantName: string, categoryCode:CreditCategoryCode): Promise<void> {
