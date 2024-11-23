@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { CacheModule } from '@nestjs/cache-manager';
 
 import { redisStore } from 'cache-manager-redis-yet';
@@ -13,8 +13,6 @@ import { CafeInfoModule } from './application/cafe/cafeInfo.module';
 import { FaqModule } from './application/faq/faq.module';
 import { QnaModule } from './application/qna/qna.module';
 import { CreditModule } from './application/credit/credit.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { getWakZooDbConfig } from './config/db/typeorm.module';
 import YamlConfig from './config/yaml/env.config';
 import { UserModule } from './application/user/user.module';
 import { WakzooMongoDbConfig } from './infra/mongodb/mongodb.module';
@@ -40,12 +38,6 @@ import { WakzooMongoDbConfig } from './infra/mongodb/mongodb.module';
       : CacheModule.register({
           isGlobal: true,
         }),
-
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: getWakZooDbConfig,
-    }),
 
     // MongoDbModule,
     WakzooMongoDbConfig,
