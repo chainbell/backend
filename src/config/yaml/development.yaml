@@ -10,3 +10,6 @@ datasource:
     password: Wakzoolife1!
     database: wakzoolife
     synchronize: true
+  mongodb:
+    wakzoolife:
+      host: mongodb://mylifeis123.synology.me:27017/wakzoolife

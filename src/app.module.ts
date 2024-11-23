@@ -17,6 +17,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { getWakZooDbConfig } from './config/db/typeorm.module';
 import YamlConfig from './config/yaml/env.config';
 import { UserModule } from './application/user/user.module';
+import { WakzooMongoDbConfig } from './infra/mongodb/mongodb.module';
+
 @Module({
   imports: [
     
@@ -44,6 +46,9 @@ import { UserModule } from './application/user/user.module';
       inject: [ConfigService],
       useFactory: getWakZooDbConfig,
     }),
+
+    // MongoDbModule,
+    WakzooMongoDbConfig,
 
     /* Domain 별 모듈 관리 */
     TestModule,
