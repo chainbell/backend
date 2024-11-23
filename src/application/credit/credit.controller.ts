@@ -34,11 +34,11 @@ export class CreditController {
 
   @Post('')
   @ApiResponse({ status: 200, description: '설정 - 크레딧 유저 추가', type: Map })
-  async post(@Body() param: CreditParticipantAddDto): Promise<Map<string, string>> {
+  async post(@Body() param: CreditParticipantAddDto): Promise<boolean> {
     
     this.creditService.addCreditParticipant(param.name, param.category);
 
-    return new Map<string, string>([['result', 'success']]);
+    return true;
   }
 
 
