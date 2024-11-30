@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
+import { HomeController } from './home.controller';
+import { HomeService } from './home.service';
 
 
 
@@ -7,7 +9,7 @@ import { Module } from '@nestjs/common';
   imports: [
     
   ],
-  controllers: [],
-  providers: [],
+  controllers: [HomeController],
+  providers: [HomeService],
 })
 export class HomeModule {}
