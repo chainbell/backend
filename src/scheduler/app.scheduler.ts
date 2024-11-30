@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import { Injectable } from "@nestjs/common";
-import { Cron, CronExpression } from "@nestjs/schedule";
+import { Cron, CronExpression, Interval } from "@nestjs/schedule";
 import { CafeInfoService } from "src/application/cafe/cafeInfo.service";
 
 @Injectable()
