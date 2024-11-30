@@ -16,6 +16,7 @@ import { CreditModule } from './application/credit/credit.module';
 import YamlConfig from './config/yaml/env.config';
 import { UserModule } from './application/user/user.module';
 import { WakzooMongoDbConfig } from './infra/mongodb/mongodb.module';
+import { HomeModule } from './application/home/home.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { WakzooMongoDbConfig } from './infra/mongodb/mongodb.module';
     QnaModule,
     CreditModule,
     UserModule,
+    HomeModule,
 
     /* Scheduler 설정 */
     AppSchedulerModule,
