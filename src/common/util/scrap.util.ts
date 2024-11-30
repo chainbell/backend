@@ -29,7 +29,7 @@ export class ScrapUtil {
 
     } catch (error) {
       console.error('웹 스크래핑 중 오류 발생:', error);
-      throw new Error('웹 스크래핑에 실패했습니다.');
+      // throw new Error('웹 스크래핑에 실패했습니다.');
     }
   }
 

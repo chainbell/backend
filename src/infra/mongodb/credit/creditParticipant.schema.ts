@@ -29,10 +29,6 @@ export class CreditParticipant extends Document{
   @IsNotEmpty()
   category: string;
 
-  public static of(id: string, name: string, category: string): CreditParticipant {
-      return new CreditParticipant({ id, name, category });
-  }
-
 }
 
 export const CreditParticipantSchema = SchemaFactory.createForClass(CreditParticipant)
