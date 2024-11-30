@@ -3,7 +3,8 @@
 import { Controller, Get } from "@nestjs/common";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CafeInfoService } from "./cafeInfo.service";
-import { CafeJoinUserCountResDto } from "./dto/res/cafeJoinUserResDto";
+import { CafeJoinUserCountResDto } from "./dto/res/CafeJoinUserResDto";
+
 
 
 
