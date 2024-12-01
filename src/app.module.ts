@@ -8,7 +8,6 @@ import { redisStore } from 'cache-manager-redis-yet';
 
 import { AppSchedulerModule } from './scheduler/app.scheduler.module';
 
-import { TestModule } from './application/test/test.module';
 import { CafeInfoModule } from './application/cafe/cafeInfo.module';
 import { FaqModule } from './application/faq/faq.module';
 import { QnaModule } from './application/qna/qna.module';
@@ -44,7 +43,7 @@ import { HomeModule } from './application/home/home.module';
     WakzooMongoDbConfig,
 
     /* Domain 별 모듈 관리 */
-    TestModule,
+    // TestModule,
     CafeInfoModule,
     FaqModule,
     QnaModule,
