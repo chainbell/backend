@@ -32,7 +32,7 @@ export class CafeInfoService {
 		return joinedUserCount;
 	}
 
-	async getCombinedCafeJoinedUserCount(): Promise<Map<string, number>> {
+	async getCombinedCafeJoinedUserCount(): Promise<Record<string, number> > {
 
 		// 1. 자정 가입자 수 조회
 		const stdCount = await this.getCafeJoinedUserCount(WakzooJoinedUserCountType.STANDARD);
@@ -41,10 +41,13 @@ export class CafeInfoService {
 		const recentCount = await this.getCafeJoinedUserCount(WakzooJoinedUserCountType.RECENT);
 
 		// 3. 반환 객체 생성 및 반환
-		const map: Map<string, number> = new Map<string, number>();
-		map.set('standard', stdCount);
-		map.set('recent', recentCount);
-		return map;
+
+		const result : Record<string, number> = {
+			standard: stdCount,
+			recent: recentCount
+		}
+
+		return result;
 	}
 
 	async getCafeJoinedUserCount(type: string): Promise<number> {

@@ -20,8 +20,8 @@ export class CafeInfoController {
   @ApiResponse({ status: 200, description: '가입자 수(기준, 최신 동시) 조회', type: CafeJoinUserCombinedCountResDto })
   async getCombine(): Promise<CafeJoinUserCombinedCountResDto> {
 
-    const combinedCount: Map<string, number> = await this.cafeInfoService.getCombinedCafeJoinedUserCount();
-    return CafeJoinUserCombinedCountResDto.of(combinedCount.get('standard'), combinedCount.get('recent'));
+    const combinedCount: Record<string, number> = await this.cafeInfoService.getCombinedCafeJoinedUserCount();
+    return CafeJoinUserCombinedCountResDto.of(combinedCount.standard, combinedCount.recent);
 
   }
 

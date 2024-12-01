@@ -25,14 +25,25 @@ export class HomeResDto {
     @ApiProperty({ description: '오늘의 단어 배경 이미지', example: '' })
     todayWordBgUrl: string = '';
 
-    constructor(standardCount: number, recentCount: number) {
+    constructor(standardCount: number, recentCount: number,
+        todayImageTitle: string, todayImageUrl: string,
+        todayWord: string, todayWordBgUrl: string) {
+            
         this.standardCount = standardCount;
         this.recentCount = recentCount;
+        this.todayImageTitle = todayImageTitle;
+        this.todayImageUrl = todayImageUrl;
+        this.todayWord = todayWord;
+        this.todayWordBgUrl = todayWordBgUrl;
+        
     }
 
-    static of(standardCount: number, recentCount: number): HomeResDto {
-        const it = new HomeResDto(standardCount, recentCount);
-        return it;
+    static of(standardCount: number, recentCount: number,
+        todayImageTitle: string, todayImageUrl: string,
+        todayWord: string, todayWordBgUrl: string): HomeResDto {
+
+        return new HomeResDto(standardCount, recentCount, todayImageTitle, todayImageUrl, todayWord, todayWordBgUrl);
+
     }
 
 }
