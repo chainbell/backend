@@ -8,8 +8,8 @@ import * as iconv from 'iconv-lite';
 
 @Injectable()
 export class ScrapUtil {
-	
-	async scrap(url: string, target: string): Promise<any> {
+
+  async scrap(url: string, target: string): Promise<any> {
     try {
       // HTTP GET 요청으로 웹 페이지 내용 가져오기 (바이너리 데이터로)
       const { data } = await axios.get(url, {
@@ -29,7 +29,7 @@ export class ScrapUtil {
 
     } catch (error) {
       console.error('웹 스크래핑 중 오류 발생:', error);
-      // throw new Error('웹 스크래핑에 실패했습니다.');
+      return null;
     }
   }
 
