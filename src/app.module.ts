@@ -1,17 +1,33 @@
+/* eslint-disable prettier/prettier */
+
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { CacheModule } from '@nestjs/cache-manager';
 
 import { redisStore } from 'cache-manager-redis-yet';
 
-import { AppController } from './app.controller';
+import { AppSchedulerModule } from './scheduler/app.scheduler.module';
+
+import { CafeInfoModule } from './application/cafe/cafeInfo.module';
+import { FaqModule } from './application/faq/faq.module';
+import { QnaModule } from './application/qna/qna.module';
+import { CreditModule } from './application/credit/credit.module';
+import YamlConfig from './config/yaml/env.config';
+import { UserModule } from './application/user/user.module';
+import { WakzooMongoDbConfig } from './infra/mongodb/mongodb.module';
+import { HomeModule } from './application/home/home.module';
 
 @Module({
   imports: [
+    
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env.development', '.env'],
+      load: [YamlConfig],
+      envFilePath: [
+        `.env.${process.env.NODE_ENV}`,
+        '.env'],
     }),
+
     process.env.ENABLE_REDIS === '1'
       ? CacheModule.register({
           isGlobal: true,
@@ -22,7 +38,23 @@ import { AppController } from './app.controller';
       : CacheModule.register({
           isGlobal: true,
         }),
+
+    // MongoDbModule,
+    WakzooMongoDbConfig,
+
+    /* Domain 별 모듈 관리 */
+    // TestModule,
+    CafeInfoModule,
+    FaqModule,
+    QnaModule,
+    CreditModule,
+    UserModule,
+    HomeModule,
+
+    /* Scheduler 설정 */
+    AppSchedulerModule,
   ],
-  controllers: [AppController],
+  providers: [],
+  controllers: [],
 })
 export class AppModule {}
