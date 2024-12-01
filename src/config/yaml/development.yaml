@@ -4,7 +4,7 @@ server:
 datasource:
   mongodb:
     wakzoolife:
-      host: mongodb://mylifeis123.synology.me:27017/wakzoolife
+      host: mongodb://mylifeis123.synology.me:7890/wakzoolife
 
 wakzoo:
   cafe-domain: https://cafe.naver.com/steamindiegame

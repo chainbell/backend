@@ -13,6 +13,6 @@ import { WakzooJoinedUserCount, WakzooJoinedUserCountSchema } from 'src/infra/mo
   ],
   controllers: [CafeInfoController],
   providers: [CafeInfoService],
-  exports: [CafeInfoService],
+  exports: [CafeInfoService, MongooseModule],
 })
 export class CafeInfoModule {}
