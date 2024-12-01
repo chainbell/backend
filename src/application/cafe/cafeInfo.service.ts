@@ -75,6 +75,9 @@ export class CafeInfoService {
 			try {
 				// 1. 왁물원 카페 웹 페이지 스캐래핑
 				const scrapedData = await this.scrapUtil.scrap(this.wakzoocafe, '.mem-cnt-info');
+				if (scrapedData === null){
+					continue;
+				}
 
 				// 2. 불필요 문자열 제거
 				const cleanedData: string = scrapedData.map(data => data.replace(/[\t\n]/g, ''))[0];
