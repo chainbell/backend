@@ -1,0 +1,9 @@
+oauth:
+  naver: # 임시
+    client-id: JVPBnG6tpF6RiLjznzOJ
+    secret: C22Gw_L3YI
+    state: secure_random_state
+    redirect-url: http://localhost:3000/api/v1/oauth/naver
+
+wakzoo:
+  cafe-domain: https://cafe.naver.com/steamindiegame
