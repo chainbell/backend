@@ -3,8 +3,11 @@
 import { HttpService } from "@nestjs/axios";
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import { InjectModel } from "@nestjs/mongoose";
 import { AxiosResponse } from "axios";
+import { Model } from "mongoose";
 import { lastValueFrom } from "rxjs";
+import { OauthNaverUser } from "src/infra/mongodb/oauth/oauthNaverUser.schema";
 
 
 @Injectable()
@@ -22,6 +25,8 @@ export class NaverOauthService {
 	constructor(
 		private readonly configService: ConfigService,
 		private readonly httpService: HttpService,
+		@InjectModel(OauthNaverUser.name)
+		private readonly oauthNaverUserModel: Model<OauthNaverUser>,
 	) {
 		this.client_id = this.configService.get<string>('oauth.naver.client-id');
 		this.secret = this.configService.get<string>('oauth.naver.secret');
@@ -86,8 +91,25 @@ export class NaverOauthService {
 			nickname: response.data.response.nickname,
 		};
 
-
 		return result;
+	}
+
+	public async setNaverProfile(naverId: string, nickname: string): Promise<void> {
+		try {
+			const existingUser = await this.oauthNaverUserModel.findOne({ id: naverId }).exec();
+			if (existingUser) {
+				// id가 이미 존재하면 저장하지 않음
+				return null;
+			}
+			const oauthNaverUser = new this.oauthNaverUserModel({
+				naverId,
+				nickname
+			});
+			oauthNaverUser.save();
+		}
+		catch (e) {
+			console.log(e);
+		}
 	}
 
 

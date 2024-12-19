@@ -5,12 +5,12 @@ import { IsNotEmpty } from "class-validator";
 import { Document } from 'mongoose';
 
 @Schema({ collection: 'oauth_naver_user' })
-export class OuathNaverUser extends Document {
+export class OauthNaverUser extends Document {
 
 
     @Prop({
         required: true,
-        name: 'name'
+        name: 'id'
     })
     @IsNotEmpty()
     id: string;
@@ -24,4 +24,4 @@ export class OuathNaverUser extends Document {
 
 }
 
-export const OuathNaverUserSchema = SchemaFactory.createForClass(OuathNaverUser)
+export const OauthNaverUserSchema = SchemaFactory.createForClass(OauthNaverUser)
