@@ -1,3 +1,3 @@
 killall -9 node
 npm install 
-npm start:dev
+nohup npm start:dev  > server.log 2>&1 &
