@@ -3,7 +3,7 @@
 import { Controller, Get } from "@nestjs/common";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CafeInfoService } from "../cafe/cafeInfo.service";
-import { HomeResDto } from "./dto/res/HomeResDto";
+import { HomeResDto } from "./dto/HomeResDto";
 
 @ApiTags('Home API - 홈 화면 API')
 @Controller('/api/v1/home')
