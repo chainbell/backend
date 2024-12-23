@@ -55,7 +55,7 @@ export class CafeInfoService {
 		let result = 0;
 		try {
 			console.log('type:', type);
-			const joinedUserCount = await this.wakzooJoinedUserCountModel.find({ type: type }).sort({ createdAt: -1 }).limit(1).exec();
+			const joinedUserCount = await this.wakzooJoinedUserCountModel.find({ type: type }).sort({ savedAt: -1 }).limit(1).exec();
 			if (joinedUserCount.length === 0) {
 				result = await this.setCafeJoinedUserCount(type);
 			}
