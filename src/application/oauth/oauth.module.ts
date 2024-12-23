@@ -5,15 +5,20 @@ import { NaverOauthService } from './naver/oauthNaver.service';
 import { HttpModule } from '@nestjs/axios';
 import { MongooseModule } from '@nestjs/mongoose';
 import { OauthNaverUser, OauthNaverUserSchema } from 'src/infra/mongodb/oauth/oauthNaverUser.schema';
+import { UserInfo, UserInfoSchema } from 'src/infra/mongodb/oauth/userInfo.schema';
+import { UserInfoService } from './user/user.service';
 
 
 @Module({
   imports: [HttpModule,
     MongooseModule.forFeature(
-      [{ name: OauthNaverUser.name, schema: OauthNaverUserSchema }]
+      [
+        { name: OauthNaverUser.name, schema: OauthNaverUserSchema },
+        { name: UserInfo.name, schema: UserInfoSchema }
+      ]
     ),
   ],
   controllers: [NaverOauthController],
-  providers: [NaverOauthService],
+  providers: [NaverOauthService, UserInfoService],
 })
 export class OauthModule {}

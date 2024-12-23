@@ -2,11 +2,11 @@
 
 import { Body, Controller, Get, Post, Query } from "@nestjs/common";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
-import { NaverOauthCallbackReqDto } from "./dto/callback/NaverOauthCallbackReqDto";
 import { NaverOauthService } from "./oauthNaver.service";
-import { NaverOauthCallbackResDto } from "./dto/callback/NaverOauthCallbackResDto";
-import { NaverOauthProfileReqDto } from "./dto/profile/NaverOauthProfileReqDto";
-import { NaverOauthProfileResDto } from "./dto/profile/NaverOauthProfileResDto";
+import { NaverOauthCallbackResDto } from "./dto/res/NaverOauthCallbackResDto";
+import { NaverOauthCallbackReqDto } from "./dto/req/NaverOauthCallbackReqDto";
+import { NaverOauthProfileReqDto } from "./dto/req/NaverOauthProfileReqDto";
+import { NaverOauthProfileResDto } from "./dto/res/NaverOauthProfileResDto";
 
 
 

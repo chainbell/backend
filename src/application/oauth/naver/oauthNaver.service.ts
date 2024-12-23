@@ -94,23 +94,5 @@ export class NaverOauthService {
 		return result;
 	}
 
-	public async setNaverProfile(naverId: string, nickname: string): Promise<void> {
-		try {
-			const existingUser = await this.oauthNaverUserModel.findOne({ id: naverId }).exec();
-			if (existingUser) {
-				// id가 이미 존재하면 저장하지 않음
-				return null;
-			}
-			const oauthNaverUser = new this.oauthNaverUserModel({
-				naverId,
-				nickname
-			});
-			oauthNaverUser.save();
-		}
-		catch (e) {
-			console.log(e);
-		}
-	}
-
-
+	
 }
