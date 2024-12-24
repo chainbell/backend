@@ -9,7 +9,7 @@ export class NaverOauthProfileReqDto {
 	readonly accessToken: string;
 
 
-    @ApiProperty({ description: '네이버 로그인 시 사용하는 Auth header type', example: 'bearer' })
+    @ApiProperty({ description: '네이버 로그인 시 사용하는 Auth header type', example: 'Bearer' })
 	@IsString()
 	readonly tokenType: string;
 

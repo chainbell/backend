@@ -5,6 +5,8 @@ import { QnaController } from './qna.controller';
 
 @Module({
   imports: [],
-  controllers: [QnaController],
+  controllers: [
+    // QnaController
+  ],
 })
 export class QnaModule {}

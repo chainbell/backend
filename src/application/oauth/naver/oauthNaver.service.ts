@@ -78,21 +78,30 @@ export class NaverOauthService {
 				}
 			}
 		*/
-		const headers = {
-			Authorization: `${tokenType} ${accessToken}`,
-		};
+		try {
+			const headers = {
+				Authorization: `${tokenType} ${accessToken}`,
+			};
 
-		const response: AxiosResponse = await lastValueFrom(
-			this.httpService.get(this.naver_open_api_url, { headers }),
-		);
+			const response: AxiosResponse = await lastValueFrom(
+				this.httpService.get(this.naver_open_api_url, { headers }),
+			);
 
-		const result: Record<string, any> = {
-			id: response.data.response.id,
-			nickname: response.data.response.nickname,
-		};
+			const result: Record<string, any> = {
+				id: response.data.response.id,
+				nickname: response.data.response.nickname,
+			};
+			return result;
 
-		return result;
+		}
+		catch (e) {
+			console.log(e);
+
+			return null;
+		}
+
+
 	}
 
-	
+
 }

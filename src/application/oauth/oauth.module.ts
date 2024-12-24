@@ -6,7 +6,8 @@ import { HttpModule } from '@nestjs/axios';
 import { MongooseModule } from '@nestjs/mongoose';
 import { OauthNaverUser, OauthNaverUserSchema } from 'src/infra/mongodb/oauth/oauthNaverUser.schema';
 import { UserInfo, UserInfoSchema } from 'src/infra/mongodb/oauth/userInfo.schema';
-import { UserInfoService } from './user/user.service';
+import { UserInfoService } from './user/userInfo.service';
+import { UserInfoController } from './user/userInfo.controller';
 
 
 @Module({
@@ -18,7 +19,7 @@ import { UserInfoService } from './user/user.service';
       ]
     ),
   ],
-  controllers: [NaverOauthController],
+  controllers: [NaverOauthController, UserInfoController],
   providers: [NaverOauthService, UserInfoService],
 })
 export class OauthModule {}
