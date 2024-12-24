@@ -15,7 +15,7 @@ import { NaverOauthProfileResDto } from "./dto/res/NaverOauthProfileResDto";
 export class NaverOauthController {
 
   constructor(
-    private readonly naverOauthService: NaverOauthService
+    private readonly naverOauthService: NaverOauthService,
   ) { }
 
   @Post('/callback')
@@ -37,6 +37,7 @@ export class NaverOauthController {
     return NaverOauthProfileResDto.of(profile.nickname);
   }
 
+  
 
 
 

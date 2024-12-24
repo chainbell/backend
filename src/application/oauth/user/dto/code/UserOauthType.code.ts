@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 export const UserOauthType = {
-    NAVER: 'N_',
-    GOOGLE: 'G_'
+    NAVER: 'NAVER',
+    GOOGLE: 'GOOGLE'
 } as const;
 
 export type UserOauthType =
