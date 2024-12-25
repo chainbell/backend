@@ -84,5 +84,28 @@ export class UserInfoService {
 		return null;
 	}
 
+	public async setNickName(oauthType: string, oauthId: string, nickname: string): Promise<boolean> {
+		try {
+			// 1. 회원 정보 조회 
+			const userInfo = await this.getUserInfo(oauthType, oauthId);
+			if (userInfo == null) {
+				return false;
+			}
+
+			// 2. 닉네임 수정
+			userInfo.nickname = nickname;
+			const result = await userInfo.save();
+			if (result == null) {
+				return false;
+			}
+			return true;
+		}
+		catch (e) {
+
+			return false;
+		}
+		
+	}
+
 
 }

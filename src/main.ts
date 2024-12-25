@@ -21,6 +21,24 @@ async function bootstrap() {
       .setTitle('Specify your title here')
       .setDescription('Specify your description here..')
       .setVersion(version)
+      .addApiKey(
+        {
+          type: 'apiKey',
+          name: 'oauthType',
+          in: 'header',
+          description: 'Oauth Service Type(NAVER, GOOGLE)',
+        },
+        'oauthType',
+      )
+      .addApiKey(
+        {
+          type: 'apiKey',
+          name: 'accessToken',
+          in: 'header',
+          description: 'Oauth Service Type',
+        },
+        'accessToken',
+      )
       .build();
 
     const document = SwaggerModule.createDocument(app, config);
