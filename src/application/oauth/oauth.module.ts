@@ -7,7 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { OauthNaverUser, OauthNaverUserSchema } from 'src/infra/mongodb/oauth/oauthNaverUser.schema';
 import { UserInfo, UserInfoSchema } from 'src/infra/mongodb/oauth/userInfo.schema';
 import { UserInfoService } from './user/userInfo.service';
-import { UserInfoController } from './user/userInfo.controller';
+import { UserInfoNickNameController } from './user/userInfoNickName.controller';
 
 
 @Module({
@@ -19,7 +19,8 @@ import { UserInfoController } from './user/userInfo.controller';
       ]
     ),
   ],
-  controllers: [NaverOauthController, UserInfoController],
+  controllers: [NaverOauthController, UserInfoNickNameController],
   providers: [NaverOauthService, UserInfoService],
+  exports: [UserInfoService],
 })
 export class OauthModule {}
