@@ -2,10 +2,10 @@
 
 import { Body, Controller, Get, Put, Query, Headers, UseInterceptors } from "@nestjs/common";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
-import { UserInfoService } from "./userInfo.service";
-import { UserInfoReqDto } from "./dto/req/UserInfoReqDto";
-import { UserNicknameResDto } from "./dto/res/UserNicknameResDto";
-import { UserNickNameReqDto } from "./dto/req/UserNickNameReqDto";
+import { UserInfoService } from "../service/userInfo.service";
+import { UserInfoReqDto } from "../dto/req/UserInfoReqDto";
+import { UserNicknameResDto } from "../dto/res/UserNicknameResDto";
+import { UserNickNameReqDto } from "../dto/req/UserNickNameReqDto";
 import { OauthInterceptor } from "src/common/interceptors/oauth.interceptor";
 
 

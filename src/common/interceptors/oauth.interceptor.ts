@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import type { FastifyRequest, FastifyReply } from 'fastify';
-import { UserInfoService } from 'src/application/oauth/user/userInfo.service';
+import { UserInfoService } from 'src/application/oauth/user/service/userInfo.service';
 
 @Injectable()
 export class OauthInterceptor implements NestInterceptor {
