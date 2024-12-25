@@ -9,7 +9,7 @@ import { UserNickNameReqDto } from "./dto/req/UserNickNameReqDto";
 import { OauthInterceptor } from "src/common/interceptors/oauth.interceptor";
 
 
-@ApiTags('사용자 정보 API')
+@ApiTags('사용자 정보 API (Authorize 필요)')
 @Controller('/api/v1/user/info/nickname')
 @UseInterceptors(OauthInterceptor)
 export class UserInfoNickNameController {
