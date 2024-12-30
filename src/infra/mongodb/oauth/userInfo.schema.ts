@@ -15,7 +15,7 @@ export class UserInfo extends Document {
     })
     @IsString()
     @IsNotEmpty()
-    id: string;
+    _id: string;
 
     @Prop({
         required: true,
