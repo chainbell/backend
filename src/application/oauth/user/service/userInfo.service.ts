@@ -4,7 +4,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
 import { v4 as uuidv4 } from 'uuid';
-import { ScreenType } from "../dto/code/ScreenType.code copy";
+import { ScreenType } from "../dto/code/ScreenType.code";
 import { UserInfo } from "src/infra/mongodb/oauth/userInfo.schema";
 import { Model } from "mongoose";
 import { NaverOauthService } from "../../naver/oauthNaver.service";
@@ -33,7 +33,7 @@ export class UserInfoService {
 			// 1. 중복 검증 
 			const userInfo = await this.getUserInfo(oauthType, oauthId);
 			if (userInfo != null) {
-				return;
+				return null;
 			}
 
 			// 2. 저장
@@ -103,69 +103,60 @@ export class UserInfoService {
 		return await this.userInfoModel.findOne({ _id: id, oauthType: UserOauthType.SYSTEM }).exec();
 	}
 
-	public async setNickName(oauthType: string, oauthId: string, nickname: string): Promise<boolean> {
+	public async setNickName(oauthType: string, oauthId: string, nickname: string): Promise<UserInfo> {
 		try {
 			// 1. 회원 정보 조회 
 			const userInfo = await this.getUserInfo(oauthType, oauthId);
 			if (userInfo == null) {
-				return false;
+				return null;
 			}
 
 			// 2. 닉네임 수정
 			userInfo.nickname = nickname;
 			const result = await userInfo.save();
-			if (result == null) {
-				return false;
-			}
-			return true;
+			return result;
 		}
 		catch (e) {
 
-			return false;
+			return null;
 		}
 	}
 
-	public async setPushAlarmFlag(oauthType: string, oauthId: string, pushAlarmFlag: boolean): Promise<boolean> {
+	public async setPushAlarmFlag(oauthType: string, oauthId: string, pushAlarmFlag: boolean): Promise<UserInfo> {
 		try {
 			// 1. 회원 정보 조회 
 			const userInfo = await this.getUserInfo(oauthType, oauthId);
 			if (userInfo == null) {
-				return false;
+				return null;
 			}
 
 			// 2. PushAlarmFlag 수정
 			userInfo.setting.pushAlarmFlag = pushAlarmFlag;
 			const result = await userInfo.save();
-			if (result == null) {
-				return false;
-			}
-			return true;
+			return result;
 		}
 		catch (e) {
-
-			return false;
+			console.error(e);
+			return null;
 		}
 	}
 
-	public async setScreenType(oauthType: string, oauthId: string, screenType: ScreenType): Promise<boolean> {
+	public async setScreenType(oauthType: string, oauthId: string, screenType: ScreenType): Promise<UserInfo> {
 		try {
 			// 1. 회원 정보 조회 
 			const userInfo = await this.getUserInfo(oauthType, oauthId);
 			if (userInfo == null) {
-				return false;
+				return null;
 			}
 
 			// 2. ScreenType 수정
 			userInfo.setting.screenType = screenType;
 			const result = await userInfo.save();
-			if (result == null) {
-				return false;
-			}
-			return true;
+			return result;
 		}
 		catch (e) {
 
-			return false;
+			return null;
 		}
 	}
 

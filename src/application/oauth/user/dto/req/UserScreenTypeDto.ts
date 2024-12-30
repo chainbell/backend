@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString } from "class-validator";
-import { ScreenType } from "../code/ScreenType.code copy";
+import { ScreenType } from "../code/ScreenType.code";
 
 export class UserScreenTypeReqDto {
 

@@ -23,14 +23,14 @@ export class TransformInterceptor implements NestInterceptor {
         if (request.url === '/') return data;
 
         // oauth 정보가 없는 경우
-        if (data.oauthFlag === false) {
-          return {
-            code: 'UNAUTHORIZED',
-            status: HttpStatus.UNAUTHORIZED,
-            data: null,
-            responseAt: new Date().toISOString(),
-          };
-        }
+        // if (data.oauthFlag === false) {
+        //   return {
+        //     code: 'UNAUTHORIZED',
+        //     status: HttpStatus.UNAUTHORIZED,
+        //     data: null,
+        //     responseAt: new Date().toISOString(),
+        //   };
+        // }
 
         return {
           code: response.statusCode.toString().startsWith('2')
