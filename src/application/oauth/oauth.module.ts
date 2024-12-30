@@ -9,6 +9,7 @@ import { UserInfo, UserInfoSchema } from 'src/infra/mongodb/oauth/userInfo.schem
 import { UserInfoService } from './user/service/userInfo.service';
 import { UserInfoNickNameController } from './user/controller/userInfoNickName.controller';
 import { UserSettingController } from './user/controller/userSetting.controller';
+import { UserJoinController } from './user/controller/user.controller';
 
 
 @Module({
@@ -20,7 +21,7 @@ import { UserSettingController } from './user/controller/userSetting.controller'
       ]
     ),
   ],
-  controllers: [NaverOauthController, UserInfoNickNameController, UserSettingController],
+  controllers: [NaverOauthController, UserInfoNickNameController, UserSettingController, UserJoinController],
   providers: [NaverOauthService, UserInfoService],
   exports: [UserInfoService],
 })

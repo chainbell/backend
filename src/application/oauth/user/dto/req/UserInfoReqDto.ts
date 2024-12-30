@@ -5,7 +5,7 @@ import { UserOauthType } from "../code/UserOauthType.code";
 
 export class UserInfoReqDto {
 
-	@ApiProperty({ description: '사용할 Oauth 서비스 (NAVER, GOOGLE)', example: UserOauthType.NAVER })
+	@ApiProperty({ description: '사용할 Oauth 서비스 (NAVER, GOOGLE, SYSTEM)', example: UserOauthType.NAVER })
 	@IsString()
 	readonly oauthType: UserOauthType;
 

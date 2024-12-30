@@ -21,28 +21,43 @@ export class UserInfoService {
 
 	}
 
-	public async initUser(oauthType: string, oauthId: string, nickname: string): Promise<void> {
+	public async initUser(oauthType: string, oauthId: string, nickname: string): Promise<string> {
 
-		// 1. 중복 검증 
-		const userInfo = await this.getUserInfo(oauthType, oauthId);
-		if (userInfo == null) {
-			return;
-		}
-
-		// 2. 저장
-		const newUserInfo = new this.userInfoModel({
-			id: oauthType + uuidv4(),
-			oauthType: oauthType,
-			oauthId: oauthId,
-			nickname: nickname,
-			joinedAt: Date.now(),
-			setting: {
-				pushAlarmFlag: false,
-				screenType: ScreenType.SYSTEM
+		/**
+		 * 사용자 등록
+		 * 	oauthType = NAVER, GOOGLE, SYSTEM
+		 * 	oauthId = NAVER, GOOGLE : accessToken
+		 * 	oauthId = SYSTEM : uuid
+		 */
+		try {
+			// 1. 중복 검증 
+			const userInfo = await this.getUserInfo(oauthType, oauthId);
+			if (userInfo != null) {
+				return;
 			}
-		});
 
-		await newUserInfo.save();
+			// 2. 저장
+			const id = uuidv4();
+			const newUserInfo = new this.userInfoModel({
+				_id: id,
+				oauthType: oauthType,
+				oauthId: id,
+				nickname: nickname,
+				joinedAt: Date.now(),
+				setting: {
+					pushAlarmFlag: false,
+					screenType: ScreenType.SYSTEM
+				}
+			});
+
+			await newUserInfo.save();
+
+			return id;
+		}
+		catch (e) {
+			console.log(e);
+			return null;
+		}
 
 	}
 
@@ -52,13 +67,16 @@ export class UserInfoService {
 		 * 	oauthType = NAVER, GOOGLE
 		 */
 
-		const userInfo = null;
+		let userInfo = null;
 
 		if (oauthType === UserOauthType.NAVER) {
-			this.getNaverUserInfo(accessToken);
+			userInfo = this.getNaverUserInfo(accessToken);
 		}
 		else if (oauthType === UserOauthType.GOOGLE) {
-			this.getGoogleUserInfo(accessToken);
+			userInfo = this.getGoogleUserInfo(accessToken);
+		}
+		else {
+			userInfo = this.getSystemUserInfo(accessToken);
 		}
 
 		return userInfo;
@@ -73,12 +91,16 @@ export class UserInfoService {
 		}
 
 		// 2. oauthId로 DB 사용자 정보 조회
-		return await this.userInfoModel.findOne({ _id: naverProfile.id, oauthType: UserOauthType.NAVER }).exec();
+		return await this.userInfoModel.findOne({ oauthId: naverProfile.id, oauthType: UserOauthType.NAVER }).exec();
 	}
 
 	private async getGoogleUserInfo(accessToken: string): Promise<UserInfo> {
 		// 추후 구현 예정
 		return null;
+	}
+
+	private async getSystemUserInfo(id: string): Promise<UserInfo> {
+		return await this.userInfoModel.findOne({ _id: id, oauthType: UserOauthType.SYSTEM }).exec();
 	}
 
 	public async setNickName(oauthType: string, oauthId: string, nickname: string): Promise<boolean> {
