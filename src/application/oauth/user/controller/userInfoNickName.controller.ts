@@ -9,8 +9,8 @@ import { UserInfoResDto } from "../dto/res/UserInfoResDto";
 import { ScreenType } from "../dto/code/ScreenType.code";
 
 
-@ApiTags('사용자 닉네임 API (Authorize 필요)')
-@Controller('/api/v1/user/info/nickname')
+@ApiTags('사용자 정보 API (Authorize 필요)')
+@Controller('/api/v1/user/info')
 @ApiOAuthHeaders()
 export class UserInfoNickNameController {
 
@@ -20,7 +20,7 @@ export class UserInfoNickNameController {
 
 
     @Get('')
-    @ApiResponse({ status: 200, description: '사용자 닉네임 조회', type: UserInfoResDto })
+    @ApiResponse({ status: 200, description: '사용자 정보 조회', type: UserInfoResDto })
     async get(@Headers('oauthType') oauthType, @Headers('accessToken') accessToken): Promise<UserInfoResDto> {
 
         const userInfo = await this.userInfoService.getUserInfo(oauthType, accessToken);
@@ -31,7 +31,7 @@ export class UserInfoNickNameController {
         return UserInfoResDto.of(userInfo.nickname, userInfo.setting.pushAlarmFlag, ScreenType[userInfo.setting.screenType]);
     }
 
-    @Put('')
+    @Put('/nickname')
     @ApiResponse({ status: 200, description: '사용자 닉네임 수정', type: UserInfoResDto })
     async post(@Headers('oauthType') oauthType, @Headers('accessToken') accessToken, @Body() param: UserNickNameReqDto): Promise<UserInfoResDto> {
         const userInfo = await this.userInfoService.setNickName(oauthType, accessToken, param.nickname);

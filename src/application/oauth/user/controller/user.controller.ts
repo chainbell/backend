@@ -8,7 +8,7 @@ import { UserInfo } from "src/infra/mongodb/oauth/userInfo.schema";
 import { UserInfoJoinReqDto } from "../dto/req/UserInfoJoinReq";
 
 
-@ApiTags('(데이터 테스트용)사용자 가입 API')
+@ApiTags('사용자 가입 API (데이터 테스트 용)')
 @Controller('/api/v1/user/join')
 export class UserJoinController {
 
