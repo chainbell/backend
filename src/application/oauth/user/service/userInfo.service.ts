@@ -83,6 +83,30 @@ export class UserInfoService {
 
 	}
 
+	public async deleteUser(oauthType: string, accessToken: string): Promise<boolean> {
+		/**
+		 * 사용자 삭제
+		 * 	oauthType = NAVER, GOOGLE, SYSTEM
+		 * 	oauthId = NAVER, GOOGLE : accessToken
+		 * 	oauthId = SYSTEM : uuid
+		 */
+
+		try {
+			const userInfo = await this.getUserInfo(oauthType, accessToken);
+			if (userInfo == null) {
+				return false;
+			}
+
+			await this.userInfoModel.deleteOne({ _id: userInfo._id }).exec();
+
+			return true;
+		}
+		catch (e) {
+			console.error(e);
+			return false;
+		}
+	}
+
 	private async getNaverUserInfo(accessToken: string): Promise<UserInfo> {
 		// 1. oauth 정보로 사용자 정보 조회
 		const naverProfile = await this.naverOauthService.getNaverProfile('Bearer', accessToken);
