@@ -11,7 +11,7 @@ import { UserInfoResDto } from "../dto/res/UserInfoResDto";
 import { ScreenType } from "../dto/code/ScreenType.code";
 
 
-@ApiTags('사용자 Setting API (Authorize 필요)')
+@ApiTags('사용자 설정 API (Authorize 필요)')
 @Controller('/api/v1/user/setting')
 @ApiOAuthHeaders()
 export class UserSettingController {
