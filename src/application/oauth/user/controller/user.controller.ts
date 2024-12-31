@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 
-import { Body, Controller, Get, Put, Query, Headers, UseInterceptors, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Put, Query, Headers, UseInterceptors, Param, Post, Delete } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { UserInfoService } from "../service/userInfo.service";
 import { UserOauthType } from "../dto/code/UserOauthType.code";
 import { UserInfo } from "src/infra/mongodb/oauth/userInfo.schema";
 import { UserInfoJoinReqDto } from "../dto/req/UserInfoJoinReq";
+import { ApiOAuthHeaders } from "src/common/annotation/oauth.annotation";
 
 
 @ApiTags('사용자 가입 API (데이터 테스트 용)')
@@ -38,4 +39,15 @@ export class UserJoinController {
         
         return userInfo;
     }
+
+    @Delete('')
+    @ApiOperation({ summary: '사용자 삭제', description: '사용자 정보 삭제' })
+    @ApiResponse({ status: 200, description: '삭제 여부 반환', type: Boolean })
+    @ApiOAuthHeaders()
+    async deleteUser(@Headers('oauthType') oauthType, @Headers('accessToken') accessToken): Promise<boolean> {
+        const result = this.userInfoService.deleteUser(oauthType, accessToken);
+        return result;
+    }
+
+
 }
