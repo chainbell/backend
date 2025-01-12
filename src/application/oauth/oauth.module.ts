@@ -10,6 +10,9 @@ import { UserInfoService } from './user/service/userInfo.service';
 import { UserInfoNickNameController } from './user/controller/userInfoNickName.controller';
 import { UserSettingController } from './user/controller/userSetting.controller';
 import { UserJoinController } from './user/controller/user.controller';
+import { WithdrawController } from './withdraw/controller/withdraw.controller';
+import { WithdrawInfo, WithdrawInfoSchema } from 'src/infra/mongodb/withdraw/withdrawInfo.schema';
+import { WithdrawService } from './withdraw/service/withdraw.service';
 
 
 @Module({
@@ -17,12 +20,13 @@ import { UserJoinController } from './user/controller/user.controller';
     MongooseModule.forFeature(
       [
         { name: OauthNaverUser.name, schema: OauthNaverUserSchema },
-        { name: UserInfo.name, schema: UserInfoSchema }
+        { name: UserInfo.name, schema: UserInfoSchema },
+        { name: WithdrawInfo.name, schema: WithdrawInfoSchema },
       ]
     ),
   ],
-  controllers: [NaverOauthController, UserInfoNickNameController, UserSettingController, UserJoinController],
-  providers: [NaverOauthService, UserInfoService],
+  controllers: [NaverOauthController, UserInfoNickNameController, UserSettingController, UserJoinController, WithdrawController],
+  providers: [NaverOauthService, UserInfoService, WithdrawService],
   exports: [UserInfoService],
 })
 export class OauthModule {}
