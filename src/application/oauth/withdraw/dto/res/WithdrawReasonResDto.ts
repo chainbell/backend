@@ -6,7 +6,7 @@ export class WithdrawReasonResDto {
 
     @ApiProperty({ description: '사용자 닉네임', example: 'foeinao392nfodka2' })
     @IsString()
-    readonly id: string;
+    readonly withdrawId: string;
 
     @ApiProperty({ description: '알림 설정', example: '탈퇴 사유' })
     @IsString()
@@ -15,7 +15,7 @@ export class WithdrawReasonResDto {
 
 
     constructor(id: string, withdrawReason: string) {
-        this.id = id;
+        this.withdrawId = id;
         this.withdrawReason = withdrawReason;
   
     }
