@@ -15,6 +15,7 @@ import { WithdrawInfo, WithdrawInfoSchema } from 'src/infra/mongodb/withdraw/wit
 import { WithdrawService } from './withdraw/service/withdraw.service';
 import { UserWithdrawService } from './user/service/userWithdraw.service';
 import { UserWithdrawController } from './user/controller/userWithdraw.controller';
+import { WithdrawHistory, WithdrawHistorySchema } from 'src/infra/mongodb/withdraw/withdrawHistory.schema';
 
 
 @Module({
@@ -24,6 +25,7 @@ import { UserWithdrawController } from './user/controller/userWithdraw.controlle
         { name: OauthNaverUser.name, schema: OauthNaverUserSchema },
         { name: UserInfo.name, schema: UserInfoSchema },
         { name: WithdrawInfo.name, schema: WithdrawInfoSchema },
+        { name: WithdrawHistory.name, schema: WithdrawHistorySchema },
       ]
     ),
   ],
