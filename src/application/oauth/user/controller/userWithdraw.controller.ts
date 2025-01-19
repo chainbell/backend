@@ -10,7 +10,7 @@ import { WithdrawService } from "../../withdraw/service/withdraw.service";
 import { UserWithdrawService } from "../service/userWithdraw.service";
 
 
-@ApiTags('사용자 설정 API (Authorize 필요)')
+@ApiTags('사용자 탈퇴 사유 관련 요청 API (Authorize 필요)')
 @Controller('/api/v1/user/withdraw')
 @ApiOAuthHeaders()
 export class UserWithdrawController {
