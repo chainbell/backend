@@ -14,6 +14,7 @@ import { WithdrawReasonController } from './withdraw/controller/withdrawReason.c
 import { WithdrawInfo, WithdrawInfoSchema } from 'src/infra/mongodb/withdraw/withdrawInfo.schema';
 import { WithdrawService } from './withdraw/service/withdraw.service';
 import { UserWithdrawService } from './user/service/userWithdraw.service';
+import { UserWithdrawController } from './user/controller/userWithdraw.controller';
 
 
 @Module({
@@ -26,7 +27,7 @@ import { UserWithdrawService } from './user/service/userWithdraw.service';
       ]
     ),
   ],
-  controllers: [NaverOauthController, UserInfoNickNameController, UserSettingController, UserJoinController, WithdrawReasonController],
+  controllers: [NaverOauthController, UserInfoNickNameController, UserSettingController, UserJoinController, WithdrawReasonController, UserWithdrawController],
   providers: [NaverOauthService, UserInfoService, WithdrawService, UserWithdrawService],
   exports: [UserInfoService],
 })
