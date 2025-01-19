@@ -28,7 +28,7 @@ export class ScrapUtil {
       return result;
 
     } catch (error) {
-      console.error('웹 스크래핑 중 오류 발생:', error);
+      console.error('웹 스크래핑 중 오류 발생');
       return null;
     }
   }

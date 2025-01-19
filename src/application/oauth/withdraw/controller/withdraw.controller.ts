@@ -31,7 +31,7 @@ export class WithdrawController {
     }
 
     @Post('/reason')
-    @ApiOperation({ summary: '회원 탈퇴 사유 추가하기', description: '회원 탈퇴' })
+    @ApiOperation({ summary: '회원 탈퇴 사유 추가하기', description: '회원 탈퇴 사유 목록에 신규 항목을 추가(관리자용)' })
     @ApiResponse({ status: 200, description: '회원 탈퇴 사유 추가하기', type: Promise<boolean> })
     async addWithdraw(@Body() param: WithdrawReasonAddReqDto): Promise<boolean> {
         return await this.withdrawService.addWithdrawReason(param.reason);
