@@ -10,9 +10,11 @@ import { UserInfoService } from './user/service/userInfo.service';
 import { UserInfoNickNameController } from './user/controller/userInfoNickName.controller';
 import { UserSettingController } from './user/controller/userSetting.controller';
 import { UserJoinController } from './user/controller/user.controller';
-import { WithdrawController } from './withdraw/controller/withdraw.controller';
+import { WithdrawReasonController } from './withdraw/controller/withdrawReason.controller';
 import { WithdrawInfo, WithdrawInfoSchema } from 'src/infra/mongodb/withdraw/withdrawInfo.schema';
 import { WithdrawService } from './withdraw/service/withdraw.service';
+import { UserWithdrawService } from './user/service/userWithdraw.service';
+import { UserWithdrawController } from './user/controller/userWithdraw.controller';
 
 
 @Module({
@@ -25,8 +27,8 @@ import { WithdrawService } from './withdraw/service/withdraw.service';
       ]
     ),
   ],
-  controllers: [NaverOauthController, UserInfoNickNameController, UserSettingController, UserJoinController, WithdrawController],
-  providers: [NaverOauthService, UserInfoService, WithdrawService],
+  controllers: [NaverOauthController, UserInfoNickNameController, UserSettingController, UserJoinController, WithdrawReasonController, UserWithdrawController],
+  providers: [NaverOauthService, UserInfoService, WithdrawService, UserWithdrawService],
   exports: [UserInfoService],
 })
 export class OauthModule {}
