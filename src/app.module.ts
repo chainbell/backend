@@ -16,6 +16,7 @@ import YamlConfig from './config/yaml/env.config';
 import { WakzooMongoDbConfig } from './infra/mongodb/mongodb.module';
 import { HomeModule } from './application/home/home.module';
 import { OauthModule } from './application/oauth/oauth.module';
+import { EncyclopediaModule } from './application/encyclopedia/encyclopedia.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { OauthModule } from './application/oauth/oauth.module';
     CreditModule,
     HomeModule,
     OauthModule,
+    EncyclopediaModule,
 
     /* Scheduler 설정 */
     AppSchedulerModule,

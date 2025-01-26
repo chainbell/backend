@@ -3,10 +3,8 @@
 import { Body, Controller, Headers, Post } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { ApiOAuthHeaders } from "src/common/annotation/oauth.annotation";
-import { UserInfoResDto } from "../dto/res/UserInfoResDto";
 import { UserWithdrawReasonReqDto } from "../dto/req/UserWithdrawReasonReqDto";
 import { UserInfoService } from "../service/userInfo.service";
-import { WithdrawService } from "../../withdraw/service/withdraw.service";
 import { UserWithdrawService } from "../service/userWithdraw.service";
 
 
