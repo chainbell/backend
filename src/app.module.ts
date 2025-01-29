@@ -20,7 +20,7 @@ import { EncyclopediaModule } from './application/encyclopedia/encyclopedia.modu
 
 @Module({
   imports: [
-    
+
     ConfigModule.forRoot({
       isGlobal: true,
       load: [YamlConfig],
@@ -29,19 +29,22 @@ import { EncyclopediaModule } from './application/encyclopedia/encyclopedia.modu
         '.env'],
     }),
 
+
     process.env.ENABLE_REDIS === '1'
       ? CacheModule.register({
-          isGlobal: true,
+        isGlobal: true,
 
-          store: redisStore,
-          url: process.env.REDIS_URI,
-        })
+        store: redisStore,
+        url: process.env.REDIS_URI,
+      })
       : CacheModule.register({
-          isGlobal: true,
-        }),
+        isGlobal: true,
+      }),
 
     // MongoDbModule,
     WakzooMongoDbConfig,
+    
+    
 
     /* Domain 별 모듈 관리 */
     // TestModule,
@@ -59,4 +62,4 @@ import { EncyclopediaModule } from './application/encyclopedia/encyclopedia.modu
   providers: [],
   controllers: [],
 })
-export class AppModule {}
+export class AppModule { }
