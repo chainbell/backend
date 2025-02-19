@@ -2,6 +2,7 @@
 
 import { Injectable } from "@nestjs/common";
 
+
 @Injectable()
 export class EncyclopediaService {
     constructor(
@@ -20,9 +21,26 @@ export class EncyclopediaService {
         /**
          * Encyclopedia 추가
          */
+
+        // const id = uuidv4();
+        // const newUserInfo = new this.userInfoModel({
+        //     _id: id,
+        //     oauthType: oauthType,
+        //     oauthId: id,
+        //     nickname: nickname,
+        //     joinedAt: Date.now(),
+        //     setting: {
+        //         pushAlarmFlag: false,
+        //         screenType: ScreenType.SYSTEM
+        //     }
+        // });
+
+
+
+
     }
 
-    public async deleteEncyclopedia(): Promise<void> {
+    public async deleteEncyclopedia(id: string): Promise<void> {
         /**
          * Encyclopedia 삭제
          */
@@ -36,3 +54,4 @@ export class EncyclopediaService {
     }
 
 }
+

@@ -9,11 +9,20 @@ import { FastifyRequest } from "fastify";
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { EncyclopediaService } from "./encyclopedia.service";
 
 
 @ApiTags('Encyclopedia API - 백과사전 API')
 @Controller('/api/v1/encyclopedia')
 export class EncyclopediaController {
+
+    constructor(
+        private readonly encyclopediaService: EncyclopediaService,
+    ){
+
+    }
+
+
 
     @Get('')
     @ApiResponse({ status: 200, description: '백과사전 인기 급상승 조회', type: Map })
@@ -24,28 +33,54 @@ export class EncyclopediaController {
     }
 
     @Post('')
-    @ApiConsumes('multipart/form-data')
-    @FileUploadBody()
-    @ApiResponse({ status: 200, description: '파일 업로드', type: Boolean })
+    @ApiBody({ type: CreateEncyclopediaDto })
+    @ApiResponse({ status: 200, description: '백과사전 등록', type: Boolean })
     async post(
-        @Req() req: FastifyRequest,
+        @Body() createEncyclopediaDto: CreateEncyclopediaDto,
     ): Promise<boolean> {
 
-        const data = await req.file(); // Fastify에서 파일 받기
-
-        if (!data) {
-            throw new Error('파일을 찾을 수 없습니다.');
-        }
-
-        // 저장할 파일 경로 설정
-        const uploadPath = path.join('/app/', 'uploads', data.filename);
-
-        // 파일 저장 (Buffer 기반)
-        const buffer = await data.toBuffer();
-        fs.writeFileSync(uploadPath, buffer);
 
 
         return true;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // @Post('/image')
+    // @ApiConsumes('multipart/form-data')
+    // @FileUploadBody()
+    // @ApiResponse({ status: 200, description: '파일 업로드', type: Boolean })
+    // async post(
+    //     @Req() req: FastifyRequest,
+    // ): Promise<boolean> {
+
+    //     const data = await req.file(); // Fastify에서 파일 받기
+
+    //     if (!data) {
+    //         throw new Error('파일을 찾을 수 없습니다.');
+    //     }
+
+    //     // 저장할 파일 경로 설정
+    //     const uploadPath = path.join('/app/', 'uploads', data.filename);
+
+    //     // 파일 저장 (Buffer 기반)
+    //     const buffer = await data.toBuffer();
+    //     fs.writeFileSync(uploadPath, buffer);
+
+
+    //     return true;
+    // }
 
 }
