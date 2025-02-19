@@ -9,6 +9,7 @@ import { AppModule } from './app.module';
 import { version } from '../package.json';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
+import * as multipart from '@fastify/multipart';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -40,6 +41,8 @@ async function bootstrap() {
 
   app.useGlobalFilters(new GlobalExceptionFilter());
   app.useGlobalInterceptors(new TransformInterceptor());
+
+  await app.register(multipart as any);
 
   await app.listen(3000, '0.0.0.0');
 }

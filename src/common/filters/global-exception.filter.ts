@@ -14,6 +14,7 @@ import { FastifyReply } from 'fastify';
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
   catch(exception: any, host: ArgumentsHost) {
+
     const ctx = host.switchToHttp();
     const response: FastifyReply<any> = ctx.getResponse<FastifyReply>();
 
@@ -22,6 +23,8 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     let status: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
     let message: string | object | APIException =
       '내부 서버 오류가 발생했습니다.';
+    
+    console.log(exception);
 
     if (exception instanceof HttpException) {
       status = exception.getStatus();

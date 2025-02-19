@@ -16,10 +16,11 @@ import YamlConfig from './config/yaml/env.config';
 import { WakzooMongoDbConfig } from './infra/mongodb/mongodb.module';
 import { HomeModule } from './application/home/home.module';
 import { OauthModule } from './application/oauth/oauth.module';
+import { EncyclopediaModule } from './application/encyclopedia/encyclopedia.module';
 
 @Module({
   imports: [
-    
+
     ConfigModule.forRoot({
       isGlobal: true,
       load: [YamlConfig],
@@ -28,19 +29,22 @@ import { OauthModule } from './application/oauth/oauth.module';
         '.env'],
     }),
 
+
     process.env.ENABLE_REDIS === '1'
       ? CacheModule.register({
-          isGlobal: true,
+        isGlobal: true,
 
-          store: redisStore,
-          url: process.env.REDIS_URI,
-        })
+        store: redisStore,
+        url: process.env.REDIS_URI,
+      })
       : CacheModule.register({
-          isGlobal: true,
-        }),
+        isGlobal: true,
+      }),
 
     // MongoDbModule,
     WakzooMongoDbConfig,
+    
+    
 
     /* Domain 별 모듈 관리 */
     // TestModule,
@@ -50,6 +54,7 @@ import { OauthModule } from './application/oauth/oauth.module';
     CreditModule,
     HomeModule,
     OauthModule,
+    EncyclopediaModule,
 
     /* Scheduler 설정 */
     AppSchedulerModule,
@@ -57,4 +62,4 @@ import { OauthModule } from './application/oauth/oauth.module';
   providers: [],
   controllers: [],
 })
-export class AppModule {}
+export class AppModule { }

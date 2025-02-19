@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
+@Global()
 @Module({
   imports: [
     ConfigModule.forRoot(), // ConfigModule 추가

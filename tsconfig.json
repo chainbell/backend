@@ -11,12 +11,16 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
+    "types": ["node", "@fastify/multipart"],
     "skipLibCheck": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
     "resolveJsonModule": true,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "strict": true
   }
 }
