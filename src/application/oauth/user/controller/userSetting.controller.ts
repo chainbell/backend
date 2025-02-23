@@ -3,7 +3,6 @@
 import { Body, Controller, Get, Put, Query, Headers, UseInterceptors, Param, HttpException, HttpStatus } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { UserInfoService } from "../service/userInfo.service";
-import { OauthInterceptor } from "src/common/interceptors/oauth.interceptor";
 import { UserPushReqDto } from "../dto/req/UserPushReqDto";
 import { UserScreenTypeReqDto } from "../dto/req/UserScreenTypeDto";
 import { ApiOAuthHeaders } from "src/common/annotation/oauth.annotation";
