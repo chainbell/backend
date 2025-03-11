@@ -10,6 +10,7 @@ import { version } from '../package.json';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import * as multipart from '@fastify/multipart';
+import { setupSwagger } from './config/swagger/swagger.config';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -18,14 +19,7 @@ async function bootstrap() {
   );
 
   if (process.env.ENABLE_SWAGGER !== '0') {
-    const config = new DocumentBuilder()
-      .setTitle('Specify your title here')
-      .setDescription('Specify your description here..')
-      .setVersion(version)
-      .build();
-
-    const document = SwaggerModule.createDocument(app, config);
-    await SwaggerModule.setup('docs', app, document);
+    setupSwagger(app); // Swagger 설정 적용
   }
 
   if (process.env.GLOBAL_CORS === '1') {

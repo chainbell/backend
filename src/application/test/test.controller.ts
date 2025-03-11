@@ -1,13 +1,13 @@
 /* eslint-disable prettier/prettier */
 
 import { TestService } from './test.service';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, Param, Post, Headers } from '@nestjs/common';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TestResDto } from './dto/res/TestResDto';
 import { TestReqDto } from './dto/req/TestReqDto';
 
 
-
+@ApiBearerAuth()
 @ApiTags('Test - Test API')
 @Controller('/test')
 export class TestController {
@@ -16,7 +16,7 @@ export class TestController {
 
   @Get(':testParam')
   @ApiResponse({ status: 200, description: 'Success', type: TestResDto }) 
-  async get(@Param('testParam') testParam: string): Promise<TestResDto> {
+  async get(@Headers() headers: Record < string, string >, @Param('testParam') testParam: string): Promise<TestResDto> {
 
     const result = TestResDto.from(await this.testService.getTestValue(testParam));
     
