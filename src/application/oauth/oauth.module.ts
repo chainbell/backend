@@ -10,7 +10,6 @@ import { UserInfoService } from './user/service/userInfo.service';
 import { UserInfoNickNameController } from './user/controller/userInfoNickName.controller';
 import { UserSettingController } from './user/controller/userSetting.controller';
 import { UserJoinController } from './user/controller/user.controller';
-import { WithdrawReasonController } from './withdraw/controller/withdrawReason.controller';
 import { WithdrawInfo, WithdrawInfoSchema } from 'src/infra/mongodb/withdraw/withdrawInfo.schema';
 import { WithdrawService } from './withdraw/service/withdraw.service';
 import { UserWithdrawService } from './user/service/userWithdraw.service';
@@ -29,7 +28,7 @@ import { WithdrawHistory, WithdrawHistorySchema } from 'src/infra/mongodb/withdr
       ]
     ),
   ],
-  controllers: [NaverOauthController, UserInfoNickNameController, UserSettingController, UserJoinController, WithdrawReasonController, UserWithdrawController],
+  controllers: [NaverOauthController, UserInfoNickNameController, UserSettingController, UserJoinController, UserWithdrawController],
   providers: [NaverOauthService, UserInfoService, WithdrawService, UserWithdrawService],
   exports: [UserInfoService],
 })
