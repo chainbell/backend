@@ -7,6 +7,12 @@ export function setupSwagger(app: INestApplication) {
     .setDescription('Nest.js API with Swagger')
     .setVersion('1.0')
     .addBearerAuth() // Authorization 헤더 추가
+    .addApiKey({ // 🔥 커스텀 헤더 추가
+      type: 'apiKey',
+      name: 'AuthServiceType',
+      in: 'header',
+      description: 'Authorization Type(NAVER, GOOGLE)',
+    }, 'custom-header') 
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

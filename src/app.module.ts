@@ -17,6 +17,7 @@ import { WakzooMongoDbConfig } from './infra/mongodb/mongodb.module';
 import { HomeModule } from './application/home/home.module';
 import { OauthModule } from './application/oauth/oauth.module';
 import { EncyclopediaModule } from './application/encyclopedia/encyclopedia.module';
+import { TestModule } from './application/test/test.module';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { EncyclopediaModule } from './application/encyclopedia/encyclopedia.modu
     HomeModule,
     OauthModule,
     EncyclopediaModule,
+    TestModule,
 
     /* Scheduler 설정 */
     AppSchedulerModule,
