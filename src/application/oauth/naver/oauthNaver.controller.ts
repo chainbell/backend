@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import { Body, Controller, Get, Post, Query } from "@nestjs/common";
-import { ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { NaverOauthService } from "./oauthNaver.service";
 import { NaverOauthCallbackResDto } from "./dto/res/NaverOauthCallbackResDto";
 import { NaverOauthCallbackReqDto } from "./dto/req/NaverOauthCallbackReqDto";
@@ -10,6 +10,7 @@ import { NaverOauthProfileResDto } from "./dto/res/NaverOauthProfileResDto";
 
 
 
+@ApiBearerAuth() // Bearer Token 사용
 @ApiTags('Oauth-Naver API')
 @Controller('/api/v1/oauth/naver')
 export class NaverOauthController {
